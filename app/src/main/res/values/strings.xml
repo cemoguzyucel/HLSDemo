@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">HLSDemo</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="action_video_view">Video View</string>
+    <string name="action_media_player">Media Player</string>
+    <string name="action_webview">Web View</string>
+    <string name="action_main_menu">Main Menu</string>
+
+    <string name="welcome">Welcome to HLS Demo for Android. Please select an option from upper right corner
+    to view a video
+
+    Hint: Please enable rotation option of your Android device, and rotate your phone to toggle between full screen mode
+    and normal mode</string>
+    <string name="title_activity_video_view">VideoViewActivity</string>
+    <string name="title_activity_media_player">MediaPlayerActivity</string>
+    <string name="title_activity_web_view">WebViewActivity</string>
+
+    <string name="label_playing">playing</string>
+    <string name="label_paused">paused</string>
+
+
+
+
+
+</resources>
