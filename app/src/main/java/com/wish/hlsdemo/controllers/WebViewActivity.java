@@ -23,7 +23,7 @@ import java.lang.reflect.InvocationTargetException;
 public class WebViewActivity extends ActionBarActivity {
 
     private WebView webView;
-    int lastOrientation = 0;
+    private int lastOrientation = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,6 @@ public class WebViewActivity extends ActionBarActivity {
 */
 
         webView.loadData(customHtml, "text/html", "UTF-8");
-
-
     }
 
 
@@ -78,9 +76,13 @@ public class WebViewActivity extends ActionBarActivity {
         if (lastOrientation != newConfig.orientation) {
             lastOrientation = newConfig.orientation;
 
+            if(lastOrientation==2){     //horizontal
+                getSupportActionBar().hide();
+            }
 
-            //full-screen için uyarı ver
-
+            else if(lastOrientation==1){    //vertical
+                getSupportActionBar().show();
+            }
         }
     }
 

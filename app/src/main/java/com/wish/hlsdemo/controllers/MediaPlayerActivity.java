@@ -39,13 +39,12 @@ public class MediaPlayerActivity extends ActionBarActivity {
     ProgressBar progressBarMediaPlayer;
 
     int lastOrientation = 0;
-    int screenHeight;       //check and delete if nes
+    int screenHeight;
     int screenWidth;
-    double screenRatio;
     RunnableProgressBar progressRunnable;
     boolean isMediaPlayerPrepared=false;
 
-    TextView textViewProgressMediaPlayer;         //fragmenta al
+    TextView textViewProgressMediaPlayer;
     TextView textViewDurationMediaPlayer;
     TextView textViewVideoStateMediaPlayer;
 
@@ -65,7 +64,7 @@ public class MediaPlayerActivity extends ActionBarActivity {
         textViewVideoStateMediaPlayer = (TextView) findViewById(R.id.textViewVideoStateMediaPlayer);
 
         textViewVideoStateMediaPlayer.setText(getString(R.string.label_playing));
-        textViewVideoStateMediaPlayer.setTextColor(Color.GREEN);               //metotlaştır alttaki 3uyle birlikte
+        textViewVideoStateMediaPlayer.setTextColor(Color.GREEN);
         textViewProgressMediaPlayer.setTextColor(Color.GREEN);
         textViewDurationMediaPlayer.setTextColor(Color.GREEN);
 
@@ -88,13 +87,13 @@ public class MediaPlayerActivity extends ActionBarActivity {
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 mediaPlayer.setDisplay(surfaceHolder);
 
-
                 try {
                     mediaPlayer.setDataSource(url);
-                    mediaPlayer.prepare();
+                    mediaPlayer.prepareAsync();
                     isMediaPlayerPrepared=true;
                 } catch (IOException e) {
                     e.printStackTrace();
+                    //TODO
                 }
 
 
@@ -116,12 +115,7 @@ public class MediaPlayerActivity extends ActionBarActivity {
             public void surfaceDestroyed(SurfaceHolder holder) {
 
             }
-
-
         });
-
-
-
     }
 
     @Override
@@ -191,15 +185,11 @@ public class MediaPlayerActivity extends ActionBarActivity {
     public  void obtainScreenSize(){
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
         screenHeight= metrics.heightPixels;
         screenWidth= metrics.widthPixels;
-        screenRatio = screenHeight/screenWidth;
-
-
     }
 
-    private class RunnableProgressBar implements Runnable{
+    private class RunnableProgressBar implements Runnable{  //observers and manipulates the state of progress bar
 
         @Override
         public void run() {

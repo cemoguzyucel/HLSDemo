@@ -10,10 +10,12 @@
     <string name="action_main_menu">Main Menu</string>
 
     <string name="welcome">Welcome to HLS Demo for Android. Please select an option from upper right corner
-    to view a video
+    to view a video.
+    </string>
 
-    Hint: Please enable rotation option of your Android device, and rotate your phone to toggle between full screen mode
-    and normal mode</string>
+    <string name="hint_one">Please enable rotation option of your Android device, and rotate your phone to toggle between full screen mode
+    and normal mode.</string>
+    <string name="hint_two">To toggle play/pause touch on the video.</string>
     <string name="title_activity_video_view">VideoViewActivity</string>
     <string name="title_activity_media_player">MediaPlayerActivity</string>
     <string name="title_activity_web_view">WebViewActivity</string>

@@ -29,16 +29,16 @@ import com.wish.hlsdemo.R;
 
 public class VideoViewActivity extends ActionBarActivity {
 
-    RelativeLayout videoViewLinearLayout;
-    VideoView videoView;
-    ProgressBar progressBarVideoView;
+    private RelativeLayout videoViewLinearLayout;
+    private VideoView videoView;
+    private ProgressBar progressBarVideoView;
 
-    int lastOrientation = 0;
-    RunnableProgressBar progressRunnable;
+    private int lastOrientation = 0;
+    private RunnableProgressBar progressRunnable;
 
-    TextView textViewProgressVideoView;         //fragmenta al
-    TextView textViewDuration;
-    TextView textViewVideoState;
+    private TextView textViewProgressVideoView;
+    private TextView textViewDuration;
+    private TextView textViewVideoState;
 
 
     @Override
@@ -55,7 +55,7 @@ public class VideoViewActivity extends ActionBarActivity {
         textViewVideoState = (TextView) findViewById(R.id.textViewVideoState);
 
         textViewVideoState.setText(getString(R.string.label_playing));
-        textViewVideoState.setTextColor(Color.GREEN);               //metotlaştır alttaki 3uyle birlikte
+        textViewVideoState.setTextColor(Color.GREEN);
         textViewProgressVideoView.setTextColor(Color.GREEN);
         textViewDuration.setTextColor(Color.GREEN);
 
@@ -65,7 +65,6 @@ public class VideoViewActivity extends ActionBarActivity {
 
         Thread thread = new Thread(progressRunnable);
         thread.start();
-        videoView.start();
 
     }
 
@@ -83,11 +82,9 @@ public class VideoViewActivity extends ActionBarActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
-        if (lastOrientation != newConfig.orientation) {
+        if (lastOrientation != newConfig.orientation) {     //checks if orientation of the screen changed or not
             lastOrientation = newConfig.orientation;
 
-
-            //full-screen için uyarı ver
             if(lastOrientation==2){     //horizontal
                 getSupportActionBar().hide();
                 videoViewLinearLayout.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT,
@@ -144,12 +141,12 @@ public class VideoViewActivity extends ActionBarActivity {
         }
     }
 
-    private class RunnableProgressBar implements Runnable{
+    private class RunnableProgressBar implements Runnable{          //observers and manipulates the state of progress bar
 
         @Override
         public void run() {
             while(true){
-                if(videoView != null){              //variable isimleri
+                if(videoView != null){
                     final int totalDuration = videoView.getDuration();
                     final int currentDuration = videoView.getCurrentPosition();
                     final int currentTime = (int)(100 * currentDuration/totalDuration);
